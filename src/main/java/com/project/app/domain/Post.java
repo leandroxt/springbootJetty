@@ -13,13 +13,10 @@ public class Post {
 
     private String picture;
 
-    private Date date;
+    private String date;
 
-    public Post(String id, String title, String picture, Date date) {
-        this.id = id;
-        this.title = title;
-        this.picture = picture;
-        this.date = date;
+    public Post() {
+
     }
 
     public String getId() {
@@ -46,11 +43,11 @@ public class Post {
         this.picture = picture;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

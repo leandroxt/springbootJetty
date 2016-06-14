@@ -9,6 +9,14 @@ import java.util.List;
  */
 public interface PostService {
 
+    Post findById(String id);
+
     List<Post> getAll();
+
+    Post add(Post post);
+
+    Post update(Post post);
+
+    void delete(Post post);
 
 }

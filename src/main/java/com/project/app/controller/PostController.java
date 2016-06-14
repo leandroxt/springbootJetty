@@ -1,10 +1,13 @@
 package com.project.app.controller;
 
+import com.project.app.domain.Post;
 import com.project.app.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,6 +24,22 @@ public class PostController {
     @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<?> getAll() {
         return new ResponseEntity<>(postService.getAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = "application/json; charset=UTF-8")
+    ResponseEntity<?> add(@RequestBody Post post) {
+        return new ResponseEntity<>(postService.add(post), HttpStatus.CREATED);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = "application/json; charset=UTF-8")
+    ResponseEntity<?> update(@RequestBody Post post) {
+        return new ResponseEntity<>(postService.update(post), HttpStatus.OK);
+    }
+
+    ResponseEntity<?> delete(@PathVariable String id) {
+        Post post = postService.findById(id);
+        postService.delete(post);
+        return new ResponseEntity<>(post, HttpStatus.OK);
     }
 
 }
