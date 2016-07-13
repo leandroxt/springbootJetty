@@ -1,22 +1,24 @@
 package com.project.app.services;
 
 import com.project.app.domain.Post;
-
-import java.util.List;
+import com.project.app.repositories.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by leandro on 12/06/16.
  */
-public interface PostService {
+@Service
+public class PostService {
 
-    Post findById(String id);
+    private PostRepository postRepository;
 
-    List<Post> getAll();
+    @Autowired
+    public void setPostRepository(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
-    Post add(Post post);
-
-    Post update(Post post);
-
-    void delete(Post post);
-
+    public Iterable<Post> findAll() {
+        return postRepository.findAll();
+    }
 }

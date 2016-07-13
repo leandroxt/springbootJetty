@@ -1,6 +1,6 @@
 package com.project.app.controller;
 
-import com.project.app.services.PostService;
+import com.project.app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,23 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by leandro on 12/06/16.
+ * Created by leandro on 11/07/16.
  */
 @Controller
-@RequestMapping("/post")
-public class PostController {
+@RequestMapping("/user")
+public class UserController {
 
-    private PostService postService;
+    private UserService userService;
 
     @Autowired
-    public void setPostService(PostService postService) {
-        this.postService = postService;
+    public void setProductService(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<?> getAll() {
-        return new ResponseEntity<>(postService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
-
-
 }
