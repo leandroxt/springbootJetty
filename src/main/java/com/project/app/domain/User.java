@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
@@ -13,7 +12,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue
-    private BigInteger id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -42,7 +41,7 @@ public class User implements Serializable {
 
     }
 
-    public User(BigInteger id, String name, String username, String email, String password, Date lastAccess, Date becomeUser, int isValid, String token) {
+    public User(Long id, String name, String username, String email, String password, Date lastAccess, Date becomeUser, int isValid, String token) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -54,11 +53,11 @@ public class User implements Serializable {
         this.token = token;
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
