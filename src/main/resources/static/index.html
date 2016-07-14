@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>aha</title>
+</head>
+<body>
+<input type="file" id="fileup" />
+<button onclick="uploadFile()">Submit</button>
+
+<script type="text/javascript">
+        function uploadFile () {
+
+          var form = new FormData();
+          form.append('uploadFile', document.getElementById('fileup').files[0]);
+
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', 'http://localhost:8080/upload');
+          xhr.onload = function () {
+            alert('upload successful');
+          }
+          xhr.send(form);
+        }
+    </script>
+</body>
+</html>

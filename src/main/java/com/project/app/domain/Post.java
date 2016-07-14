@@ -1,8 +1,6 @@
 package com.project.app.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
@@ -14,14 +12,19 @@ public class Post implements Serializable {
     @GeneratedValue
     private BigInteger id;
 
+    @Column(nullable = false)
     private String title;
 
-    private String subTitle;
+    @Column(nullable = false)
+    private String subtitle;
 
-    private Date datePost;
+    @Column(nullable = false)
+    private Date postDate;
 
+    @Column(nullable = false, name = "MEDIATYPE_ID")
     private int mediaType;
 
+    @ManyToOne
     private User user;
 
     public Post() {
@@ -30,8 +33,8 @@ public class Post implements Serializable {
     public Post(BigInteger id, String title, String subTitle, Date datePost, int mediaType, User user) {
         this.id = id;
         this.title = title;
-        this.subTitle = subTitle;
-        this.datePost = datePost;
+        this.subtitle = subTitle;
+        this.postDate = datePost;
         this.mediaType = mediaType;
         this.user = user;
     }
@@ -52,20 +55,20 @@ public class Post implements Serializable {
         this.title = title;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getSubtitle() {
+        return subtitle;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public void setSubtitle(String subtitle) {
+        this.subtitle = subtitle;
     }
 
     public Date getDatePost() {
-        return datePost;
+        return postDate;
     }
 
     public void setDatePost(Date datePost) {
-        this.datePost = datePost;
+        this.postDate = datePost;
     }
 
     public int getMediaType() {
