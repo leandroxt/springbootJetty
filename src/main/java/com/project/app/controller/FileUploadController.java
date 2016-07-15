@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.math.BigInteger;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
 
 /**
  * Created by leandro on 13/07/16.
  */
 @Controller
 public class FileUploadController {
+
+    private SecureRandom random = new SecureRandom();
 
     @Autowired
     private Environment environment;
@@ -33,7 +37,7 @@ public class FileUploadController {
     public ResponseEntity<?> uploadFile(@RequestParam("uploadFile") MultipartFile uploadFile) {
         String filename = uploadFile.getOriginalFilename();
         String directory = environment.getProperty("app.path.uploadFile");
-        String filepath = Paths.get(directory, filename).toString();
+        String filepath = Paths.get(directory, randomString(filename)).toString();
 
         try {
             BufferedOutputStream stream =
@@ -50,6 +54,11 @@ public class FileUploadController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private String randomString(String filename) {
+        String[] fileExtension = filename.split("\\.");
+        return new BigInteger(130, random).toString(32).concat("." + fileExtension[fileExtension.length - 1]);
     }
 
 }

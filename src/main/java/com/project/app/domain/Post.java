@@ -27,16 +27,20 @@ public class Post implements Serializable {
     @ManyToOne
     private User user;
 
+    @Column(nullable = false)
+    private String picture;
+
     public Post() {
     }
 
-    public Post(BigInteger id, String title, String subTitle, Date datePost, int mediaType, User user) {
+    public Post(BigInteger id, String title, String subtitle, Date postDate, int mediaType, User user, String picture) {
         this.id = id;
         this.title = title;
-        this.subtitle = subTitle;
-        this.postDate = datePost;
+        this.subtitle = subtitle;
+        this.postDate = postDate;
         this.mediaType = mediaType;
         this.user = user;
+        this.picture = picture;
     }
 
     public BigInteger getId() {
@@ -63,12 +67,12 @@ public class Post implements Serializable {
         this.subtitle = subtitle;
     }
 
-    public Date getDatePost() {
+    public Date getPostDate() {
         return postDate;
     }
 
-    public void setDatePost(Date datePost) {
-        this.postDate = datePost;
+    public void setPostDate(Date postDate) {
+        this.postDate = postDate;
     }
 
     public int getMediaType() {
@@ -85,6 +89,14 @@ public class Post implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     @Override

@@ -14,6 +14,11 @@
           var form = new FormData();
           form.append('uploadFile', document.getElementById('fileup').files[0]);
 
+          form.append('title', 'Title from screen');
+          form.append('subtitle', 'Nice text about the picture that is posting');
+          form.append('mediaType', 1);
+          form.append('user', 4);
+
           var xhr = new XMLHttpRequest();
           xhr.open('POST', 'http://localhost:8080/upload');
           xhr.onload = function () {
