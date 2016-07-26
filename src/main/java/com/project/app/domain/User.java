@@ -1,5 +1,7 @@
 package com.project.app.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,9 +29,11 @@ public class User implements Serializable {
     private String password;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date lastAccess;
 
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date becomeUser;
 
     @Column(nullable = false)

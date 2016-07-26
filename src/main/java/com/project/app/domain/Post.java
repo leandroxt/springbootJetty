@@ -1,5 +1,8 @@
 package com.project.app.domain;
 
+import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -19,6 +22,7 @@ public class Post implements Serializable {
     private String subtitle;
 
     @Column(nullable = false)
+    @DateTimeFormat(iso = DATE_TIME, pattern = "dd/MM/yyyy")
     private Date postDate;
 
     @Column(nullable = false, name = "MEDIATYPE_ID")

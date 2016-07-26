@@ -31,6 +31,11 @@ public class PostController {
         return new ResponseEntity<>(postService.findAll(), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/lastUpdates", method = RequestMethod.GET)
+    ResponseEntity<?> findLastUpdates() {
+        return new ResponseEntity<>(postService.findLastUpdates(), HttpStatus.OK);
+    }
+
     public ResponseEntity<?> create(@RequestParam("file") MultipartFile file,
                                     @RequestBody Post post) {
         Post p = postService.create(file, post);

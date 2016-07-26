@@ -31,6 +31,10 @@ public class PostService {
         return postRepository.findAll();
     }
 
+    public Object findLastUpdates() {
+        return postRepository.findOne(4L);
+    }
+
     public Post create(MultipartFile file, Post post) {
         String filename = file.getOriginalFilename();
         String newFilename = randomString(filename);
